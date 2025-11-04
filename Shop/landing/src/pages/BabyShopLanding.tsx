@@ -320,7 +320,7 @@ const BabyShopLanding = () => {
             <div className="bg-linear-to-br from-purple-500/10 to-pink-500/10 p-8 rounded-2xl border border-purple-500/20 text-center group hover:scale-105 transition-transform duration-300">
               <Mail className="w-12 h-12 text-purple-400 mx-auto mb-4 group-hover:scale-110 transition-transform duration-300" />
               <h3 className="text-xl font-bold mb-2">Email</h3>
-              <p className="text-black">risaheel@53gmail.com</p>
+              <p className="text-black">risaheel53@gmail.com</p>
             </div>
           </div>
         </div>
