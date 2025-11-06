@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ShoppingCart,
   Heart,
@@ -12,8 +13,22 @@ import {
 import SC from "../assets/SC.png";
 
 const BabyShopLanding = () => {
-  const [scrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("home");
+  const navigate = useNavigate();
+
+  const handleNext = () => {
+    navigate("/Collections");
+  };
+
+  const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string): void => {
     document.getElementById(sectionId)?.scrollIntoView({ behavior: "smooth" });
@@ -51,7 +66,7 @@ const BabyShopLanding = () => {
       price: 29.99,
       rating: 5,
       image: "🐘",
-      color: "from-green-200 to-green-300",
+      color: "from-green-200 to-green-400",
     },
     {
       id: 5,
@@ -155,11 +170,11 @@ const BabyShopLanding = () => {
                 Explore The Largest Collection of Toys For Your Little Ones.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
-                <button className="px-8 py-4 bg-linear-to-r from-pink-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer">
+                <button
+                  onClick={handleNext}
+                  className="px-8 py-4 bg-linear-to-r from-pink-500 to-purple-500 text-white rounded-full font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer"
+                >
                   Shop Now
-                </button>
-                <button className="px-8 py-4 bg-white text-gray-800 rounded-full font-semibold hover:shadow-xl transform hover:scale-105 transition-all duration-300 border-2 border-gray-200 cursor-pointer">
-                  View Collections
                 </button>
               </div>
             </div>
@@ -246,7 +261,10 @@ const BabyShopLanding = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-4xl font-bold text-gray-800">Featured Toys</h2>
-            <button className="text-purple-600 font-semibold hover:text-purple-700 transition-colors">
+            <button
+              onClick={handleNext}
+              className="text-purple-500 font-semibold hover:text-purple-900 transition-colors cursor-pointer"
+            >
               View All →
             </button>
           </div>
@@ -341,19 +359,13 @@ const BabyShopLanding = () => {
               Style Circles
             </span>
           </div>
-          <p className="text-black-400 mb-6 text-xl">
+          <p className="text-black mb-6 text-xl">
             Making childhood magical, one toy at a time.
           </p>
           <div className="flex justify-center space-x-6 text-gray-500">
-            <a href="#" className="hover:text-pink-400 transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="hover:text-pink-400 transition-colors">
-              Terms
-            </a>
-            <a href="#" className="hover:text-pink-400 transition-colors">
-              Contact
-            </a>
+            <a className="hover:text-pink-400 transition-colors">Privacy</a>
+            <a className="hover:text-pink-400 transition-colors">Terms</a>
+            <a className="hover:text-pink-400 transition-colors">Contact</a>
           </div>
           <p className="text-gray-700 text-xl mt-6">
             © 2025 Style Circles. All rights reserved.
