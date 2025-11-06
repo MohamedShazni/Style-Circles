@@ -1,11 +1,12 @@
 import "./App.css";
-import BabyShopLanding from "./pages/BabyShopLanding";
+import { BrowserRouter } from "react-router";
+import Shop from "./pages/Shop";
 
 function App() {
   return (
-    <>
-      <BabyShopLanding />
-    </>
+    <BrowserRouter>
+      <Shop />
+    </BrowserRouter>
   );
 }
 
